@@ -1,0 +1,14 @@
+
+<% include ./layout/main %>
+
+
+    <div>
+
+<img src="<%=user.profile_picture%>"/>
+<h1><%=user.full_name%></h1>
+<div>
+
+    <img src="<%=post.map(item,i).images.thumbnail%>"/>
+</div>
+    </div>
+
