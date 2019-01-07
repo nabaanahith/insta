@@ -16,34 +16,70 @@ router.get('/login/:username/:password',(req,res)=>{
 })
 router.post('/post:/file/:caption',(req,res)=>{
     const client = new Instagram({ username, password ,FileCookieStore})
+    
 
+const photo = req.params.file//const photo = 'e.png'
+
+function doHomework(callback) {
+  
+    sharp(photo)
+   .resize(100,100)
+   .toFile('namee.jpg', function(err) {
+  
+       console.log(typeof(r),'\n',typeof(photo))
+})
+    callback();
+  }
+  
+  function alertFinished(){
     client
-      .login()
-      .then(() => {
-       //  client
-       //    .getProfile()
-       //    .then(console.log)
-         //const photo = 'w.jpg'
-         const photo=req.params.file
-          const caption=req.params.caption
-          // client.uploadPhoto({ photo, caption: '❤️' }).then(data=>{
-            client.uploadPhoto({ photo, caption }).then(data=>{
-               console.log("data",data);
-               
-           }).catch(e=>{
-               console.log("ee1",e);
-               
-           })
-        }).catch(err=>{
-   console.log("errrrrrrr",err);
-   
-   
-        })
-   
-
-
+  .login()
+  .then(() => {
+   //  client
+   //    .getProfile()
+   //    .then(console.log)
+   console.log('r',r)
+  // const ee='name.jpg'
+client.uploadPhoto({photo:'namee.jpg', caption: '❤️' }).then(data=>{
+    console.log("data",data);
+    
+}).catch(e=>{
+    console.log("ee1",e);
+    
 
 })
+  })
+}
+  
+doHomework( alertFinished);
+
+//     client
+//       .login()
+//       .then(() => {
+//        //  client
+//        //    .getProfile()
+//        //    .then(console.log)
+//          //const photo = 'w.jpg'
+//          const photo=req.params.file
+//           const caption=req.params.caption
+//           // client.uploadPhoto({ photo, caption: '❤️' }).then(data=>{
+//             client.uploadPhoto({ photo, caption }).then(data=>{
+//                console.log("data",data);
+               
+//            }).catch(e=>{
+//                console.log("ee1",e);
+               
+//            })
+//         }).catch(err=>{
+//    console.log("errrrrrrr",err);
+   
+   
+//         })
+   
+
+
+
+// })
 // const instagram=new Instagram({
 //     clientId:clientId,
 //     clientSecret:clientSecret
@@ -150,6 +186,6 @@ router.post('/post:/file/:caption',(req,res)=>{
 //     res.redirect('/auth/instagram')
 //  }
 //  )
-
+})
 
 module.exports=router
