@@ -1,5 +1,6 @@
 const express=require('express')
 const Instagram = require('instagram-web-api')
+const sharp=require('sharp')
 const FileCookieStore = require('tough-cookie-filestore2')
 const router=express.Router()
 const Instagram=require('node-instagram').default
