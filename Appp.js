@@ -30,34 +30,38 @@ app.use(fileupload());
 
 app.use(express.static("./upimg"));
 app.use(express.static("./upfile"));
-
+//for input form
 app.get('/', function (req, res){
   res.sendFile(__dirname + '/main.html');
 });
+//now from post man use this way to post img 
 app.post("/", (req, res) => {
+  //schema vakidation
   const validating = validationSchema(req.body);
   //  If the validation fails
   if (validating.error) {
     res.status(400).send(validating.error.details[0].message);
   } else {
-
+//we the img uploaded his info will returned
     var img = req.files.img;
     var name1 = img.name;
     var bookImgUud = uuidv1();
-    const bookImgPath = "./" + bookImgUud + name1;
+    const bookImgPath = "./" + bookImgUud + name1;//path where i want save img uploaded by user
     var imgdb = bookImgUud + name1;
-   var x=__dirname +imgdb+'.jpg'
+  //var x=__dirname +imgdb+'.jpg'
 
-    img.mv(bookImgPath);
-    console.log('img',img.data,'\n','name1',name1,'\n','bookImgPath',bookImgPath,'\n','imgdb',imgdb,'\n',)
-const  username='--'
-password ='--'
+    img.mv(bookImgPath);//img saved
+  //  console.log('img',img.data,'\n','name1',name1,'\n','bookImgPath',bookImgPath,'\n','imgdb',imgdb,'\n',)
+const  username='=='
+password ='=='
 const client = new Instagram({ username, password ,FileCookieStore})
 
 const photo =name1
+//now i wii call dohomework function with callback function to gerantee that
+//img croped the i will login to post this img
 doHomework( alertFinished);
  function doHomework(callback) {
-  
+  //crop img
     sharp(img.data)
    .resize(100,100)
    .toFile('namee.jpg', function(err) {
@@ -67,13 +71,13 @@ doHomework( alertFinished);
        
 })
 
-
+//back to post this img
  callback();
   }
 
 
 
-
+//through this function
    function alertFinished(){
      client
    .login()
@@ -81,9 +85,8 @@ doHomework( alertFinished);
   client
     .getProfile()
    .then(console.log)
- 
- const ee='name.jpg'
-client.uploadPhoto({photo:'namee.jpg', caption: '❤️' }).then(data=>{
+
+client.uploadPhoto({photo:'namee.jpg', caption: '❤️' }).then(data=>{//name.jpg always the name of new img 
      console.log("data",data);
     
  }).catch(e=>{
@@ -115,7 +118,7 @@ function validationSchema(result) {
 
 module.exports = app;
 
-
+//that's it :)
 
 
 
