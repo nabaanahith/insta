@@ -46,17 +46,19 @@ app.post("/", (req, res) => {
     var bookImgUud = uuidv1();
     const bookImgPath = "./" + bookImgUud + name1;
     var imgdb = bookImgUud + name1;
+   var x=__dirname +imgdb+'.jpg'
+
     img.mv(bookImgPath);
-    console.log('img',img,'\n','name1',name1,'\n','bookImgPath',bookImgPath,'\n','imgdb',imgdb,'\n',)
-const  username=''
-password =''
+    console.log('img',img.data,'\n','name1',name1,'\n','bookImgPath',bookImgPath,'\n','imgdb',imgdb,'\n',)
+const  username='--'
+password ='--'
 const client = new Instagram({ username, password ,FileCookieStore})
 
 const photo =name1
-doHomework( );
- function doHomework() {
+doHomework( alertFinished);
+ function doHomework(callback) {
   
-    sharp(bookImgPath)
+    sharp(img.data)
    .resize(100,100)
    .toFile('namee.jpg', function(err) {
   console.log(err);
@@ -66,35 +68,35 @@ doHomework( );
 })
 
 
- //  callback();
+ callback();
   }
-}
-})
 
 
-//   function alertFinished(){
-//     client
-//   .login()
-//   .then(() => {
-//    //  client
-//    //    .getProfile()
-//    //    .then(console.log)
+
+
+   function alertFinished(){
+     client
+   .login()
+   .then(() => {
+  client
+    .getProfile()
+   .then(console.log)
  
-//   // const ee='name.jpg'
-// client.uploadPhoto({photo:'namee.jpg', caption: '❤️' }).then(data=>{
-//     console.log("data",data);
+ const ee='name.jpg'
+client.uploadPhoto({photo:'namee.jpg', caption: '❤️' }).then(data=>{
+     console.log("data",data);
     
-// }).catch(e=>{
-//     console.log("ee1",e);
+ }).catch(e=>{
+     console.log("ee1",e);
     
 
-// })
-//   })
-// }
+ })
+   })
+ }
   
 
-// }
-// })
+ }
+ })
 
 port =  8000;
 app.listen(port, () =>
